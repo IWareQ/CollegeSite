@@ -12,4 +12,4 @@ spring:
         format_sql: true
 
     database-platform: org.hibernate.dialect.PostgreSQL94Dialect
-    show-sql: true # debug
+    show-sql: true
