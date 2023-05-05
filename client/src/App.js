@@ -1,5 +1,5 @@
 import './css/App.css';
-import React, {Component} from 'react';
+import {Component} from 'react';
 import ExampleService from './services/ExampleService';
 
 class App extends Component {
@@ -8,13 +8,15 @@ class App extends Component {
 		super(props)
 
 		this.state = {
-			example: []
+			example: 'Загрузка...'
 		}
 	}
 
 	componentDidMount() {
 		ExampleService.getExample().then(res => {
 			this.setState({example: res.data});
+		}).catch(() => {
+			this.setState({example: 'Сервер не включен'});
 		});
 	}
 
