@@ -1,6 +1,6 @@
-import './css/App.css';
+import '../styles/App.css';
 import {Component} from 'react';
-import ExampleService from './services/ExampleService';
+import ExampleService from '../services/ExampleService';
 
 class App extends Component {
 
