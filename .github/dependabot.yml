@@ -1,13 +1,13 @@
 version: 2
 updates:
-  - package-ecosystem: "gradle"
-    directory: "/server/"
+  - package-ecosystem: "npm"
+    directory: "/client/"
     schedule:
       interval: "daily"
       time: "10:00"
 
-  - package-ecosystem: "npm"
-    directory: "/client/"
+  - package-ecosystem: "gradle"
+    directory: "/server/"
     schedule:
       interval: "daily"
       time: "10:00"
