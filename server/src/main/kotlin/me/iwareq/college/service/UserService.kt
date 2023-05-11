@@ -15,7 +15,7 @@ class UserService(val repository: UserRepository) {
 	}
 
 	fun getUser(id: Long): User = this.repository.findById(id).orElseThrow {
-		throw UserNotFoundException(id)
+		throw UserNotFoundException()
 	}
 
 	fun deleteUser(id: Long) = this.repository.deleteById(id)
