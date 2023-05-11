@@ -1,20 +1,23 @@
 import React from 'react';
 import logo from './logo.svg';
 import './styles/App.css';
+import './styles/button.css';
 
-function App(){
-
-    return(
+function App() {
+    return (
         <div className="container">
-            <div className="header">
-            <div className="logo">Logo</div>
-            <div className="links">
-                <a href="#">Главная</a>
-                <a href="#">О колледже</a>
-                <a href="#">Абитуриентам</a>
-                <a href="#">Студентам</a>
-            </div>
-            </div>
+            <header className="header">
+                <div className="logo">CollegeSite</div>
+                <nav className="links">
+                    <a href="#">Главная</a>
+                    <a href="#">О колледже</a>
+                    <a href="#">Абитуриентам</a>
+                    <a href="#">Студентам</a>
+                </nav>
+                <a href="#" className="shine-button">
+                    <b>Вход</b>
+                </a>
+            </header>
         </div>
     );
 }
