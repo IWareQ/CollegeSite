@@ -1,16 +1,16 @@
 .shine-button {
-    border: 1px solid #386DF5;
-    border-radius: 50px;
-    text-decoration: none;
-    display: inline-block;
-    padding: 10px 30px;
-    margin: 10px 20px;
-    overflow: hidden;
-    color: #386DF5;
-    transition: .2s ease-in-out;
+	border: 1px solid #386df5;
+	border-radius: 50px;
+	text-decoration: none;
+	display: inline-block;
+	padding: 10px 30px;
+	margin: 10px 20px;
+	overflow: hidden;
+	color: #386df5;
+	transition: .2s ease-in-out;
 }
 
 .shine-button:hover {
-    background: #386DF5;
-    color: #fff;
+	background: #386df5;
+	color: #fff;
 }
