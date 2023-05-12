@@ -3,15 +3,14 @@ package me.iwareq.college.model
 import jakarta.persistence.*
 
 @Entity
-@Table(name = "users")
-data class User(
+@Table(name = "specialties")
+class Specialty(
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	var id: Long = -1,
 
-	var firstname: String,
-	var lastname: String,
-
-	@Enumerated(EnumType.STRING)
-	var role: Role = Role.STUDENT
+	val okpdtr: String,
+	val title: String,
+	@Lob
+	val description: String
 )

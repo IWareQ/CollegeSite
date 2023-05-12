@@ -1,12 +1,12 @@
 package me.iwareq.college.service
 
+import me.iwareq.college.exception.ModelNotFoundException
 import me.iwareq.college.model.User
-import me.iwareq.college.model.exception.UserNotFoundException
-import me.iwareq.college.repository.UserRepository
+import me.iwareq.college.repository.UsersRepository
 import org.springframework.stereotype.Service
 
 @Service
-class UserService(val repository: UserRepository) {
+class UsersService(val repository: UsersRepository) {
 
 	fun getAll(): MutableList<User> = this.repository.findAll()
 
@@ -15,7 +15,7 @@ class UserService(val repository: UserRepository) {
 	}
 
 	fun getUser(id: Long): User = this.repository.findById(id).orElseThrow {
-		throw UserNotFoundException()
+		throw ModelNotFoundException("User not found")
 	}
 
 	fun deleteUser(id: Long) = this.repository.deleteById(id)

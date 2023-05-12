@@ -1,14 +1,14 @@
 package me.iwareq.college.controller
 
 import me.iwareq.college.model.User
-import me.iwareq.college.service.UserService
+import me.iwareq.college.service.UsersService
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @CrossOrigin("http://localhost:3000")
 @RestController
 @RequestMapping("/api/v1/users")
-class UserController(val service: UserService) {
+class UsersController(val service: UsersService) {
 
 	@GetMapping
 	fun getAll() = this.service.getAll()
