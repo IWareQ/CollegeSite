@@ -1,12 +1,11 @@
 .container {
 	display: flex;
 	flex-direction: column;
-	height: 100vh;
 }
 
 .header {
 	display: flex;
-	justify-content: space-around;
+	justify-content: space-evenly;
 	align-items: center;
 	height: 60px;
 	padding: 0 20px;
@@ -17,19 +16,11 @@
 	font-weight: bold;
 }
 
-.links {
-	font-size: 16px;
+.links, .links a {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-}
-
-.links a {
 	color: #4f5665;
-	font-style: normal;
-	font-weight: 400;
-	font-size: 16px;
-	line-height: 19px;
 	margin: 0 10px;
 	text-decoration: none;
 }
@@ -37,4 +28,47 @@
 .content {
 	flex: 1;
 	padding: 20px;
+}
+
+.phone-site, .phone-site a {
+	padding: 10px;
+	font-style: normal;
+	font-weight: 700;
+	font-size: 20px;
+	line-height: 24px;
+	text-decoration: none;
+}
+
+.college-msg {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	position: relative;
+	margin-left: 211px;
+	margin-top: 50px;
+}
+
+.msg1 {
+	font-style: normal;
+	font-weight: 700;
+	font-size: 38px;
+	line-height: 70px;
+	color: #0b132a;
+}
+
+.msg2 {
+	font-style: normal;
+	font-weight: 700;
+	font-size: 38px;
+	line-height: 70px;
+	color: #3897f5;
+}
+
+.image-man{
+	margin-right: 15%;
+	margin-top: -222px;
+	position: inherit;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
 }
