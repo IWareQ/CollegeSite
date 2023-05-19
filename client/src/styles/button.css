@@ -15,14 +15,6 @@
 	color: #fff;
 }
 
-.enroll{
-	display: flex;
-	justify-content: flex-start;
-	align-items: center;
-	position: relative;
-	margin-left: 400px;
-	margin-top: 50px;
-}
 .enroll-button {
 	text-decoration: none;
 	display: inline-block;

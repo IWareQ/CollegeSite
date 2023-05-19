@@ -12,11 +12,17 @@
 }
 
 .logo {
+	font-weight: 500;
 	font-size: 24px;
-	font-weight: bold;
 }
 
-.links, .links a {
+.logo-msg2 {
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 100;
+}
+
+.links {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -25,32 +31,34 @@
 	text-decoration: none;
 }
 
-.content {
-	flex: 1;
-	padding: 20px;
-}
-
-.phone-site, .phone-site a {
+.phone-site {
 	padding: 10px;
-	font-style: normal;
-	font-weight: 700;
 	font-size: 20px;
-	line-height: 24px;
 	text-decoration: none;
 }
 
+
 .college-msg {
 	display: flex;
-	justify-content: flex-start;
+	justify-content: space-evenly;
 	align-items: center;
-	position: relative;
-	margin-left: 211px;
-	margin-top: 50px;
+}
+
+.text-wrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+.enroll{
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
 }
 
 .msg1 {
+	text-align: start;
 	font-style: normal;
-	font-weight: 700;
+	font-weight: 500;
 	font-size: 38px;
 	line-height: 70px;
 	color: #0b132a;
@@ -63,12 +71,6 @@
 	line-height: 70px;
 	color: #3897f5;
 }
-
-.image-man{
-	margin-right: 15%;
-	margin-top: -222px;
-	position: inherit;
-	display: flex;
-	justify-content: flex-end;
-	align-items: center;
+.image{
+	margin-top: 88px;
 }
