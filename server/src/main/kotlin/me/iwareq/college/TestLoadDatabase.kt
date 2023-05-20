@@ -2,14 +2,15 @@ package me.iwareq.college
 
 import me.iwareq.college.model.Specialty
 import me.iwareq.college.model.User
-import me.iwareq.college.service.SpecialtiesService
-import me.iwareq.college.service.UsersService
+import me.iwareq.college.service.SpecialtyService
+import me.iwareq.college.service.UserService
 import org.springframework.boot.CommandLineRunner
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.security.crypto.password.PasswordEncoder
 
 @Configuration
-class LoadDatabase {
+class TestLoadDatabase(private val passwordEncoder: PasswordEncoder) {
 
 	private val specialtyDescription: String = """
 		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore 
@@ -31,13 +32,27 @@ class LoadDatabase {
 	""".trimIndent()
 
 	@Bean
-	fun initUsers(service: UsersService) = CommandLineRunner {
-		service.addUser(User(firstname = "Иван", lastname = "Иванов"))
-		service.addUser(User(firstname = "Андрей", lastname = "Андреев"))
+	fun initUsers(service: UserService) = CommandLineRunner {
+		service.addUser(
+			User(
+				firstName = "Иван",
+				lastName = "Иванов",
+				email = "ivan.ivanov@mail.ru",
+				password = this.passwordEncoder.encode("ivan.ivanov")
+			)
+		)
+		service.addUser(
+			User(
+				firstName = "Андрей",
+				lastName = "Андреев",
+				email = "andrey.andreev@mail.ru",
+				password = this.passwordEncoder.encode("andrey.andreev")
+			)
+		)
 	}
 
 	@Bean
-	fun initSpecialties(service: SpecialtiesService) = CommandLineRunner {
+	fun initSpecialties(service: SpecialtyService) = CommandLineRunner {
 		service.addSpecialty(
 			Specialty(
 				okpdtr = "11.02.15",

@@ -2,5 +2,9 @@ package me.iwareq.college.repository
 
 import me.iwareq.college.model.User
 import org.springframework.data.jpa.repository.JpaRepository
+import java.util.*
 
-interface UsersRepository : JpaRepository<User, Long>
+interface UserRepository : JpaRepository<User, Long> {
+
+	fun findByEmail(email: String): Optional<User>
+}

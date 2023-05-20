@@ -4,5 +4,5 @@ enum class Role {
 
 	STUDENT,
 	TEACHER,
-	STAFF
+	ADMIN
 }

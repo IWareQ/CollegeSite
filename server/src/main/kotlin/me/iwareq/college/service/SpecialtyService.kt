@@ -1,12 +1,12 @@
 package me.iwareq.college.service
 
-import me.iwareq.college.exception.ModelNotFoundException
+import me.iwareq.college.exception.SpecialtyNotFoundException
 import me.iwareq.college.model.Specialty
-import me.iwareq.college.repository.SpecialtiesRepository
+import me.iwareq.college.repository.SpecialtyRepository
 import org.springframework.stereotype.Service
 
 @Service
-class SpecialtiesService(val repository: SpecialtiesRepository) {
+class SpecialtyService(private val repository: SpecialtyRepository) {
 
 	fun getAll(): MutableList<Specialty> = this.repository.findAll()
 
@@ -15,7 +15,7 @@ class SpecialtiesService(val repository: SpecialtiesRepository) {
 	}
 
 	fun getSpecialty(id: Long): Specialty = this.repository.findById(id).orElseThrow {
-		throw ModelNotFoundException("Specialty not found")
+		throw SpecialtyNotFoundException("Specialty not found with id: $id")
 	}
 
 	fun deleteSpecialty(id: Long) = this.repository.deleteById(id)
