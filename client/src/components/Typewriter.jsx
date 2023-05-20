@@ -1,11 +1,13 @@
 import React from 'react';
-function Typewriter(){
+
+function Typewriter() {
+
 	function sleep(ms) {
 		return new Promise((resolve) => setTimeout(resolve, ms));
 	}
 
-	const phrases = ["где учат профессиям будущего", "в который поступают лидеры", "студентам которого завидуют"];
-	const el = document.getElementById("typewriter");
+	const phrases = ['где учат профессиям будущего', 'в который поступают лидеры', 'студентам которого завидуют'];
+	const el = document.getElementById('typewriter');
 
 	let sleepTime = 100;
 

@@ -33,8 +33,9 @@
 	box-shadow: 0 8px 15px rgba(0, 0, 0, .1);
 	transition: .3s;
 }
+
 .enroll-button:hover {
-	background: #3897F5;
+	background: #3897f5;
 	box-shadow: 0 15px 20px rgba(56, 151, 245, 0.35);
 	color: white;
 	transform: translateY(-7px);

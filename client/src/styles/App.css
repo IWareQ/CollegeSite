@@ -37,7 +37,6 @@
 	text-decoration: none;
 }
 
-
 .college-msg {
 	display: flex;
 	justify-content: space-evenly;
@@ -49,7 +48,8 @@
 	flex-direction: column;
 	align-items: flex-start;
 }
-.enroll{
+
+.enroll {
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
@@ -71,6 +71,7 @@
 	line-height: 70px;
 	color: #3897f5;
 }
-.image{
+
+.image {
 	margin-top: 88px;
 }

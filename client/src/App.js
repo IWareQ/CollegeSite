@@ -5,9 +5,6 @@ import {ReactComponent as Man} from './Man.svg';
 import Typewriter from './components/Typewriter';
 import './styles/typewriter.css';
 
-
-
-
 function App() {
 	return (
 		<div>
@@ -31,13 +28,13 @@ function App() {
 			<div className="college-msg">
 				<div className="text-wrapper">
 					<Typewriter/>
-				<div className="msg1">Колледж, <br/></div>
-				<div className="msg2"><span id="typewriter"></span><span id="cursor">|</span></div>
-				<a href="" className="enroll-button">Поступить</a>
+					<div className="msg1">Колледж, <br/></div>
+					<div className="msg2"><span id="typewriter"></span><span id="cursor">|</span></div>
+					<a href="" className="enroll-button">Поступить</a>
 				</div>
-					<div className="image">
-						<Man/>
-					</div>
+				<div className="image">
+					<Man/>
+				</div>
 			</div>
 
 
