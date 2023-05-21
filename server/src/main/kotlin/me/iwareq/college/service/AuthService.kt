@@ -18,27 +18,24 @@ class AuthService(
 	private val authManager: AuthenticationManager
 ) {
 
-	fun register(request: RegisterRequest): AuthResponse {
+	fun register(request: RegisterRequest) {
 		val user = User(
 			firstName = request.firstName,
 			lastName = request.lastName,
+			middleName = request.middleName,
 			email = request.email,
-			password = this.passwordEncoder.encode(request.password),
-			roles = request.roles
+			password = this.passwordEncoder.encode(request.password)
 		)
 
-		val savedUser = UserDetailsImpl.fromUser(this.userService.addUser(user))
-
-		val jwt = this.securityService.generateToken(userDetails = savedUser)
-		return AuthResponse(jwt)
+		this.userService.addUser(user)
 	}
 
 	fun authenticate(request: AuthRequest): AuthResponse {
 		this.authManager.authenticate(UsernamePasswordAuthenticationToken(request.email, request.password))
 
-		val user = UserDetailsImpl.fromUser(this.userService.getUser(request.email))
+		val userDetails = UserDetailsImpl(this.userService.getUser(request.email))
 
-		val jwt = this.securityService.generateToken(userDetails = user)
+		val jwt = this.securityService.generateToken(userDetails = userDetails)
 		return AuthResponse(jwt)
 	}
 }

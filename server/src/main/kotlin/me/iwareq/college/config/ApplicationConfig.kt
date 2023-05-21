@@ -1,6 +1,7 @@
 package me.iwareq.college.config
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.fasterxml.jackson.module.kotlin.KotlinFeature
 import com.fasterxml.jackson.module.kotlin.KotlinModule
 import me.iwareq.college.service.UserDetailsServiceImpl
@@ -18,8 +19,8 @@ class ApplicationConfig(private val userDetailsService: UserDetailsServiceImpl) 
 
 	@Bean
 	@Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
-	fun objectMapper(): ObjectMapper =
-		ObjectMapper().registerModule(
+	fun objectMapper(): ObjectMapper = ObjectMapper()
+		.registerModule(
 			KotlinModule.Builder()
 				.withReflectionCacheSize(512)
 				.configure(KotlinFeature.NullToEmptyCollection, false)
@@ -28,7 +29,7 @@ class ApplicationConfig(private val userDetailsService: UserDetailsServiceImpl) 
 				.configure(KotlinFeature.SingletonSupport, false)
 				.configure(KotlinFeature.StrictNullChecks, false)
 				.build()
-		)
+		).registerModule(JavaTimeModule())
 
 	@Bean
 	fun authenticationProvider(): AuthenticationProvider {

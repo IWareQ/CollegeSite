@@ -11,6 +11,13 @@ class UserDetailsImpl(
 	private val authorities: Collection<GrantedAuthority>
 ) : UserDetails {
 
+	constructor(user: User) : this(
+		user.id,
+		user.email,
+		user.password,
+		user.roles.map { SimpleGrantedAuthority("ROLE_${it.name}") }
+	)
+
 	override fun getAuthorities() = this.authorities
 
 	override fun getPassword() = this.password
@@ -24,6 +31,7 @@ class UserDetailsImpl(
 	override fun isCredentialsNonExpired() = true
 
 	override fun isEnabled() = true
+
 	override fun equals(other: Any?): Boolean {
 		if (this === other) return true
 		if (other !is UserDetailsImpl) return false
@@ -32,18 +40,4 @@ class UserDetailsImpl(
 	}
 
 	override fun hashCode() = this.id.hashCode()
-
-	companion object {
-
-		fun fromUser(user: User): UserDetails {
-			val authorities = user.roles.map { SimpleGrantedAuthority("ROLE_${it.name}") }
-
-			return UserDetailsImpl(
-				user.id,
-				user.email,
-				user.password,
-				authorities
-			)
-		}
-	}
 }

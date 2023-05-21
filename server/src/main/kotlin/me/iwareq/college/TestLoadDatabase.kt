@@ -1,98 +1,184 @@
 package me.iwareq.college
 
-import me.iwareq.college.model.Specialty
-import me.iwareq.college.model.User
-import me.iwareq.college.service.SpecialtyService
-import me.iwareq.college.service.UserService
+import me.iwareq.college.model.*
+import me.iwareq.college.service.*
 import org.springframework.boot.CommandLineRunner
-import org.springframework.context.annotation.Bean
-import org.springframework.context.annotation.Configuration
 import org.springframework.security.crypto.password.PasswordEncoder
+import org.springframework.stereotype.Component
+import java.time.LocalDate
 
-@Configuration
-class TestLoadDatabase(private val passwordEncoder: PasswordEncoder) {
+@Component
+class TestLoadDatabase(
+	private val specialtyService: SpecialtyService,
+	private val subjectService: SubjectService,
+	private val teacherService: TeacherService,
+	private val userService: UserService,
+	private val studentService: StudentService,
+	private val groupService: GroupService,
+	private val passwordEncoder: PasswordEncoder
+) : CommandLineRunner {
 
-	private val specialtyDescription: String = """
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore 
-		magna aliqua. Orci a scelerisque purus semper eget. Felis eget nunc lobortis mattis aliquam faucibus. Eu augue 
-		ut lectus arcu bibendum at varius vel. Id semper risus in hendrerit gravida rutrum quisque non. Hac habitasse 
-		platea dictumst quisque sagittis purus sit. Proin fermentum leo vel orci porta non. Et tortor consequat id porta 
-		nibh venenatis cras sed felis. Tincidunt nunc pulvinar sapien et ligula ullamcorper. Enim eu turpis egestas 
-		pretium aenean. Cum sociis natoque penatibus et. Auctor eu augue ut lectus arcu bibendum at varius. Imperdiet 
-		sed euismod nisi porta lorem. Morbi blandit cursus risus at ultrices mi tempus imperdiet. Eget mi proin sed 
-		libero enim sed faucibus turpis in.
-
-		Proin fermentum leo vel orci porta non pulvinar neque laoreet. Mus mauris vitae ultricies leo integer malesuada.
-		Ac feugiat sed lectus vestibulum mattis ullamcorper velit sed. Turpis egestas integer eget aliquet nibh praesent.
-		liquam malesuada bibendum arcu vitae elementum curabitur vitae. Vel turpis nunc eget lorem dolor sed viverra 
-		ipsum. Lobortis scelerisque fermentum dui faucibus in ornare quam. Egestas pretium aenean pharetra magna ac 
-		placerat vestibulum lectus. Sapien faucibus et molestie ac feugiat sed lectus. Ornare aenean euismod elementum 
-		nisi quis eleifend quam. Tortor pretium viverra suspendisse potenti nullam ac tortor vitae purus. Proin 
-		fermentum leo vel orci. Lectus mauris ultrices eros in cursus turpis.
-	""".trimIndent()
-
-	@Bean
-	fun initUsers(service: UserService) = CommandLineRunner {
-		service.addUser(
-			User(
-				firstName = "Иван",
-				lastName = "Иванов",
-				email = "ivan.ivanov@mail.ru",
-				password = this.passwordEncoder.encode("ivan.ivanov")
-			)
-		)
-		service.addUser(
-			User(
-				firstName = "Андрей",
-				lastName = "Андреев",
-				email = "andrey.andreev@mail.ru",
-				password = this.passwordEncoder.encode("andrey.andreev")
-			)
-		)
-	}
-
-	@Bean
-	fun initSpecialties(service: SpecialtyService) = CommandLineRunner {
-		service.addSpecialty(
+	override fun run(vararg args: String?) {
+		// Создание специальностей
+		val specialty1 = specialtyService.addSpecialty(
 			Specialty(
 				okpdtr = "11.02.15",
-				title = "Инфокоммуникационные сети и системы связи",
-				description = specialtyDescription
+				title = "Инфокоммуникационные сети и системы связи"
 			)
 		)
-		service.addSpecialty(
+
+		val specialty2 = specialtyService.addSpecialty(
 			Specialty(
 				okpdtr = "09.02.06",
-				title = "Сетевое и системное администрирование",
-				description = specialtyDescription
+				title = "Сетевое и системное администрирование"
 			)
 		)
-		service.addSpecialty(
-			Specialty(
-				okpdtr = "09.02.07",
-				title = "Информационные системы и программирование",
-				description = specialtyDescription
+
+		// Создание предметов
+		val subject1 = subjectService.addSubject(
+			Subject(
+				title = "Физическая культура"
 			)
 		)
-		service.addSpecialty(
-			Specialty(
-				okpdtr = "38.02.01",
-				title = "Экономика и бухгалтерский учет",
-				description = specialtyDescription
+
+		val subject2 = subjectService.addSubject(
+			Subject(
+				title = "Основы философии"
 			)
 		)
-		service.addSpecialty(
-			Specialty(
-				okpdtr = "10.02.05",
-				title = "Обеспечение информационной безопасности автоматизированных систем",
-				description = specialtyDescription
+
+		val subject3 = subjectService.addSubject(
+			Subject(
+				title = "Основы проектирования баз данных"
 			)
 		)
-		service.addSpecialty(
-			Specialty(
-				okpdtr = "11.02.12",
-				title = "Почтовая связь",
-				description = specialtyDescription
+
+		val subject4 = subjectService.addSubject(
+			Subject(
+				title = "Элементы высшей математики"
+			)
+		)
+
+		// Создание учителей
+		val teacher1 = teacherService.addTeacher(
+			Teacher(
+				user = userService.addUser(
+					User(
+						firstName = "Андрей",
+						lastName = "Волков",
+						middleName = "Сергеевич",
+						email = "andrey.volkov@example.com",
+						password = this.passwordEncoder.encode("andrey.volkov"),
+						roles = mutableSetOf(Role.TEACHER)
+					)
+				),
+				subjects = mutableSetOf(subject1, subject2)
+			)
+		)
+
+		val teacher2 = teacherService.addTeacher(
+			Teacher(
+				user = userService.addUser(
+					User(
+						firstName = "Наталья",
+						lastName = "Кузнецова",
+						middleName = "Петровна",
+						email = "natalya.kuznetsova@example.com",
+						password = this.passwordEncoder.encode("natalya.kuznetsova"),
+						roles = mutableSetOf(Role.TEACHER)
+					)
+				),
+				subjects = mutableSetOf(subject3, subject4)
+			)
+		)
+
+		// Создание студентов
+		val student1 = studentService.addStudent(
+			Student(
+				user = userService.addUser(
+					User(
+						firstName = "Александр",
+						lastName = "Козлов",
+						middleName = "Николаевич",
+						email = "alexander.kozlov@mail.ru",
+						password = this.passwordEncoder.encode("alexander.kozlov")
+					)
+				),
+				specialty = specialty1,
+				admissionDate = LocalDate.now(),
+				studyForm = StudyForm.FULL_TIME,
+				dateOfIssue = LocalDate.now()
+			)
+		)
+
+		val student2 = studentService.addStudent(
+			Student(
+				user = userService.addUser(
+					User(
+						firstName = "Алексей",
+						lastName = "Смирнов",
+						middleName = "Игоревич",
+						email = "alexey.smirnov@example.com",
+						password = this.passwordEncoder.encode("alexey.smirnov")
+					)
+				),
+				specialty = specialty1,
+				admissionDate = LocalDate.now(),
+				studyForm = StudyForm.FULL_TIME,
+				dateOfIssue = LocalDate.now()
+			)
+		)
+
+		val student3 = studentService.addStudent(
+			Student(
+				user = userService.addUser(
+					User(
+						firstName = "Екатерина",
+						lastName = "Петрова",
+						middleName = "Александровна",
+						email = "ekaterina.petrova@example.com",
+						password = this.passwordEncoder.encode("ekaterina.petrova")
+					)
+				),
+				specialty = specialty2,
+				admissionDate = LocalDate.now(),
+				studyForm = StudyForm.FULL_TIME,
+				dateOfIssue = LocalDate.now()
+			)
+		)
+
+		val student4 = studentService.addStudent(
+			Student(
+				user = userService.addUser(
+					User(
+						firstName = "Михаил",
+						lastName = "Сидоров",
+						middleName = "Дмитриевич",
+						email = "mikhail.sidorov@example.com",
+						password = this.passwordEncoder.encode("mikhail.sidorov")
+					)
+				),
+				specialty = specialty2,
+				admissionDate = LocalDate.now(),
+				studyForm = StudyForm.FULL_TIME,
+				dateOfIssue = LocalDate.now()
+			)
+		)
+
+		// Создание групп
+		groupService.addGroup(
+			Group(
+				title = "ИСПВ-2",
+				students = mutableSetOf(student1, student2),
+				classLeader = teacher1
+			)
+		)
+
+		groupService.addGroup(
+			Group(
+				title = "ИСПВ-3",
+				students = mutableSetOf(student3, student4),
+				classLeader = teacher2
 			)
 		)
 	}

@@ -18,11 +18,6 @@ class JwtAuthenticationFilter(
 ) : OncePerRequestFilter() {
 
 	override fun doFilterInternal(request: HttpServletRequest, response: HttpServletResponse, filter: FilterChain) {
-		/*if (request.servletPath.contains("/api/v1/auth")) {
-			filter.doFilter(request, response)
-			return
-		}*/
-
 		val authHeader = request.getHeader("Authorization")
 		if (this.isHeaderValid(authHeader)) {
 			val jwt = authHeader.substring("Bearer ".length)
