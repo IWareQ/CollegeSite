@@ -4,15 +4,18 @@ import java.security.SecureRandom
 
 private const val CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
 
-private const val KEY_LENGTH = 64
-
 fun main() {
+	println("Secret key for JWT: " + generateKey(64))
+	println("Password for Admin: " + generateKey(16))
+}
+
+private fun generateKey(length: Int): String {
 	val random = SecureRandom()
-	val sb = StringBuilder(KEY_LENGTH)
-	for (i in 0 until KEY_LENGTH) {
+	val sb = StringBuilder(length)
+	repeat(length) {
 		val randomIndex = random.nextInt(CHARACTERS.length)
 		sb.append(CHARACTERS[randomIndex])
 	}
 
-	println("Random key: $sb")
+	return sb.toString()
 }

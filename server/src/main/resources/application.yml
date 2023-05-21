@@ -19,5 +19,8 @@ spring:
           auto: create-drop
   security:
     jwt:
-      secret-key: JoFjCo0sceo5JLRj2EeEQ7GvkWM9wzTBcrw9hkRipL6LxVr7jESfuwcKWHw3ZZHj
-      expiration: 604800000 # 7 days in millis
+      secret-key: JoFjCo0sceo5JLRj2EeEQ7GvkWM9wzTBcrw9hkRipL6LxVr7jESfuwcKWHw3ZZHj # Сгенерирован в KeyGenerator.kt
+      expiration: 604800000 # 7 дней в миллисекундах
+    admin:
+      email: admin@admin.com
+      password: 6qlCfcQKCJMPJXWa # Сгенерирован в KeyGenerator.kt

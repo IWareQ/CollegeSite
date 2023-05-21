@@ -2,6 +2,7 @@ package me.iwareq.college
 
 import me.iwareq.college.model.*
 import me.iwareq.college.service.*
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.CommandLineRunner
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Component
@@ -18,7 +19,25 @@ class TestLoadDatabase(
 	private val passwordEncoder: PasswordEncoder
 ) : CommandLineRunner {
 
+	@Value("\${spring.security.admin.email}")
+	private val adminEmail = ""
+
+	@Value("\${spring.security.admin.password}")
+	private val adminPassword = ""
+
 	override fun run(vararg args: String?) {
+		// Создание админа
+		userService.addUser(
+			User(
+				firstName = "Admin",
+				lastName = "Admin",
+				middleName = "Admin",
+				email = adminEmail,
+				password = this.passwordEncoder.encode(adminPassword),
+				roles = mutableSetOf(Role.ADMIN)
+			)
+		)
+
 		// Создание специальностей
 		val specialty1 = specialtyService.addSpecialty(
 			Specialty(

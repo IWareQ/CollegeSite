@@ -14,7 +14,7 @@ data class Student(
 	@JoinColumn(name = "user_id")
 	var user: User,
 
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "specialty_id")
 	var specialty: Specialty,
 
